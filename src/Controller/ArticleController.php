@@ -46,19 +46,19 @@ class ArticleController extends AbstractController {
          1 => [
             "title" => "article 1",
             "content" => "contenu de l'article 1",
-            "image" => "https://picsum.photos/200",
+            "image" => "https://picsum.photos/600",
             "id" => 1
          ],
          2 => [
             "title" => "article 2",
             "content" => "contenu de l'article 2",
-            "image" => "https://picsum.photos/200",
+            "image" => "https://picsum.photos/600",
             "id" => 2
          ],
          3 => [
             "title" => "article 3",
             "content" => "contenu de l'article 3",
-            "image" => "https://picsum.photos/200",
+            "image" => "https://picsum.photos/600",
             "id" => 3
          ]
          ];
