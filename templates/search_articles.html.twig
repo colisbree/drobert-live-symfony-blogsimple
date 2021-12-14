@@ -1,17 +1,18 @@
-
 {% extends "base.html.twig" %}
 
 {% block css %}
    <link rel="stylesheet" src="{{ asset('assets/css/articles.css') }}">
 {% endblock %}
 
-{% block title %}Liste des articles{% endblock %}
+{% block title %}Resultat de la recherche{% endblock %}
 
 {% block main %}
+    <p>Votre recherche : {{ search }}</p>
+    <br/>
    {% for article in articles %}
       <article>
          <h2>TITRE : {{ article.title }}</h2>
-         <p>CONTENU :{{ article.content }}</p>
+         
          {# <img class="article-image" src="{{ article.image }}"> #}
          <a href="{{ path('article', {'id':article.id}) }}">voir l'article</a>
       </article>

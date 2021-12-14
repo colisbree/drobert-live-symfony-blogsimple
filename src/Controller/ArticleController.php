@@ -1,68 +1,48 @@
 <?php
 namespace App\Controller;
 
+use App\Repository\ArticleRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 class ArticleController extends AbstractController {
    
    /**
     * @Route("/articles", name="articles")
     */
-   public function articles() {
+   public function articles(ArticleRepository $articleRepository) {
       
-      $articles = [
-         1 => [
-            "title" => "article 1",
-            "content" => "contenu de l'article 1",
-            "image" => "https://picsum.photos/200",
-            "id" => 1
-         ],
-         2 => [
-            "title" => "article 2",
-            "content" => "contenu de l'article 2",
-            "image" => "https://picsum.photos/200",
-            "id" => 2
-         ],
-         3 => [
-            "title" => "article 3",
-            "content" => "contenu de l'article 3",
-            "image" => "https://picsum.photos/200",
-            "id" => 3
-         ]
-         ];
+      // la classe repository permet de faire des requêtes SELECT dans la table articles
+      // je dois donc instancier la classe ArticleRepository pour pour utiliser une des 4 méthodes
+      // FIND / FIND ALL / FIND BY / FIND ONE BY
+      $articles = $articleRepository->findAll();
       
       return $this->render('articles.html.twig', ['articles' => $articles]);
    }
 
    /**
     * @Route("/article/{id}", name="article")
-    *
-    * @return void
     */
-   public function article($id) {
+   public function article($id, ArticleRepository $articleRepository) {
 
-      $articles = [
-         1 => [
-            "title" => "article 1",
-            "content" => "contenu de l'article 1",
-            "image" => "https://picsum.photos/600",
-            "id" => 1
-         ],
-         2 => [
-            "title" => "article 2",
-            "content" => "contenu de l'article 2",
-            "image" => "https://picsum.photos/600",
-            "id" => 2
-         ],
-         3 => [
-            "title" => "article 3",
-            "content" => "contenu de l'article 3",
-            "image" => "https://picsum.photos/600",
-            "id" => 3
-         ]
-         ];
+      $article = $articleRepository->find($id);
          
-      return $this->render('article.html.twig', ['article' => $articles[$id]]);
+      return $this->render('article.html.twig', ['article' => $article]);
+   }
+
+   /**
+    * @Route("/search-results", name="search")
+    */
+   public function searchArticle(Request $request, ArticleRepository $articleRepository){
+      $search = $request->query->get('search'); // cette ligne ne fonctionne pas en méthode post
+      //$search = $request->get('search');      // cette ligne fonctionne en méthode post
+      
+      $articles=$articleRepository->searchArticle($search);
+      
+      return $this->render('search_articles.html.twig', [
+         'articles' => $articles,
+         'search' => $search
+      ]);
    }
 }

@@ -52,12 +52,14 @@ table {
 .header{
    height: 100px;
    background-color: blanchedalmond;
+	
 }
 
 .menu{
    height:100%;
    display:flex;
 }
+
 
 .menu-items{
    justify-content:space-around;
@@ -70,3 +72,7 @@ table {
 .menu-logo{
    height:100px;
 }
+
+article {
+	margin: 10px 10px 20px 10px;
+  }

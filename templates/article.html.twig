@@ -7,9 +7,10 @@
 {% block main %}
    
       <article>
-         <h2>{{ article.title }}</h2>
-         <p>{{ article.content }}</p>
-         <img src="{{ article.image }}">
+         <h2>TITRE : {{ article.title }}</h2>
+         <p>PUBLIE LE : {{ article.publisehdAt|date("m/d/Y", "Europe/Paris") }}</p>
+         <p>CONTENU : {{ article.content }}</p>
+         {# <img src="{{ article.image }}"> #}
       </article>
    
 {% endblock %}
