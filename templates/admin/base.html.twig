@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+   {% block css %}{% endblock %} {# permet d'avoir un css spécifique à la page #}
+   {# {{ encore_entry_link_tags('app') }} ulitsation du webpack encore pour générer le css #}
+
+   <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+   <header class="header">
+   <nav class="menu">
+      <img class="menu-logo" src="{{ asset('assets/images/study.jpg')}}" alt="">
+      <ul class="menu-items">
+         <li class="menu-item"><a href='{{ path('home') }}'>Accueil</a></li>
+         <li class="menu-item"><a href='{{ path('articles') }}'>Articles</a></li>
+         <li class="menu-item">Contact</li>
+         <li class="menu-item">
+            <form class="form" action="{{ path('search') }}" >Recherche 
+               <input class="form-input" name="search" type="text">
+               <input class="form-input" type="submit">
+            </form>
+         </li>
+      <ul>
+      <ul>
+         <li>Bonjour {{ app.user.email }}</li>
+         <li><a href='{{ path('admin_articles') }}'>Administration des articles</a></li>
+         <li><a href='{{ path('logout') }}'>Déconnexion</a></li>
+      </ul>
+   </nav>
+   </header>
+   <main>
+    {% block main %}{% endblock %}
+   </main>
+</body>
+</html>
