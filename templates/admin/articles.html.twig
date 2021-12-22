@@ -10,16 +10,16 @@
 {% block main %}
 
    <div>
-      <a href="#">Créer un nouvel article</a>
+      <a href="{{ path('admin_article_insert') }}">Créer un nouvel article</a>
    </div>
 
    {% for article in articles %}
       <article>
          <h2>TITRE : {{ article.title }}</h2>
-         <p>TITRE : {{ article.id }}</p>
+         <p>ID : {{ article.id }}</p>
          {# <img class="article-image" src="{{ article.image }}"> #}
-         <a href="{{ path('article', {'id':article.id}) }}">Supprimer</a> | 
-         <a href="{{ path('article', {'id':article.id}) }}">Modifier</a> | 
+         <a href="{{ path('admin_article_delete', {'id':article.id}) }}">Supprimer</a> | 
+         <a href="{{ path('admin_article_update', {'id':article.id}) }}">Modifier</a> | 
          <a href="{{ path('article', {'id':article.id}) }}">voir l'article</a>
       </article>
    {% endfor %}
